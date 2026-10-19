@@ -139,6 +139,25 @@
             pointer-events: none;
         }
 
+        .model-vi {
+            margin-top: 0.65rem;
+            padding: 0.7rem 0.9rem;
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #1e40af;
+        }
+
+        .model-vi strong {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
         .toggle-model {
             margin-top: 0.55rem;
             font-size: 0.82rem;
@@ -412,6 +431,12 @@
             <div class="model-box" id="modelIntro">In this day and age, the appearance of social problems will directly
                 affect our life and many aspects such as education, entertainment, working, the environment, finance,
                 and health. The topic is that... I will discuss .... in this essay</div>
+            <div class="model-vi" id="viIntro">
+                <strong>Nghĩa tiếng Việt</strong>
+                Trong thời đại ngày nay, sự xuất hiện của các vấn đề xã hội gây ảnh hưởng trực tiếp đến cuộc sống của
+                chúng ta cũng như nhiều khía cạnh khác như giáo dục, giải trí, công việc, môi trường, tài chính và sức
+                khỏe. Chủ đề được đề cập ở đây là... và tôi sẽ thảo luận về... trong bài viết này
+            </div>
             <button type="button" class="toggle-model" id="toggleIntro" onclick="toggleModel('intro')">Ẩn mẫu (để tự
                 nhớ)</button>
         </div>
@@ -450,6 +475,11 @@
             </div>
             <div class="model-box" id="modelConcl">Overall, every single situation will consist of both advantages and
                 disadvantages. From my point of view, we need to develop the pros and minimize the cons of the problem
+            </div>
+            <div class="model-vi" id="viConcl">
+                <strong>Nghĩa tiếng Việt</strong>
+                Nhìn chung, mọi tình huống đều có cả ưu điểm và nhược điểm. Theo quan điểm của tôi, chúng ta cần phát
+                huy những mặt tích cực và giảm thiểu những mặt tiêu cực của vấn đề
             </div>
             <button type="button" class="toggle-model" id="toggleConcl" onclick="toggleModel('concl')">Ẩn mẫu (để tự
                 nhớ)</button>
@@ -492,8 +522,10 @@
 
         function toggleModel(key) {
             const box = document.getElementById(key === "intro" ? "modelIntro" : "modelConcl");
+            const vi = document.getElementById(key === "intro" ? "viIntro" : "viConcl");
             const btn = document.getElementById(key === "intro" ? "toggleIntro" : "toggleConcl");
             const hidden = box.classList.toggle("hidden");
+            if (vi) vi.style.display = hidden ? "none" : "block";
             btn.textContent = hidden ? "Hiện mẫu" : "Ẩn mẫu (để tự nhớ)";
         }
 
