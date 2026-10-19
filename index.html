@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Check Mở bài & Kết bài – Advantages / Disadvantages</title>
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --bg: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 14px;
+            --safe: env(safe-area-inset-bottom, 12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: calc(1rem + var(--safe));
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 1.4rem 1.1rem 1.2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 0.88rem;
+            opacity: 0.92;
+            margin-top: 0.25rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.85rem 1rem 0;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.7rem;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text);
+        }
+
+        .tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .panel {
+            display: none;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .card-title h2 {
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+
+        .speak-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #dbeafe;
+            color: var(--primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .model-box {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            font-size: 0.98rem;
+            line-height: 1.55;
+            color: #1e293b;
+        }
+
+        .model-box.hidden {
+            filter: blur(6px);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .toggle-model {
+            margin-top: 0.55rem;
+            font-size: 0.82rem;
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        label.field-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        /* Input: khung cố định, không đổi màu */
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            line-height: 1.55;
+            resize: vertical;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* Live colored text preview */
+        .typed-preview {
+            margin-top: 0.65rem;
+            padding: 0.75rem 1rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            line-height: 1.65;
+            min-height: 2.5rem;
+            word-break: break-word;
+        }
+
+        .typed-preview:empty::before {
+            content: "Từ bạn gõ sẽ hiện màu tại đây…";
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .w-ok {
+            color: #15803d;
+            font-weight: 600;
+        }
+
+        .w-bad {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .w-pending {
+            color: #94a3b8;
+        }
+
+        .legend {
+            margin-top: 0.4rem;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .legend .g {
+            color: #15803d;
+            font-weight: 700;
+        }
+
+        .legend .r {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.1rem;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:active {
+            background: #1e40af;
+        }
+
+        .btn-ghost {
+            background: #f1f5f9;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+        }
+
+        .result {
+            margin-top: 0.85rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.perfect {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        .result.partial {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+
+        .result.bad {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .result .score {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+        }
+
+        .diff-line {
+            margin-top: 0.5rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .diff-line .ok {
+            color: #166534;
+        }
+
+        .diff-line .miss {
+            background: #fecaca;
+            color: #991b1b;
+            padding: 0 2px;
+            border-radius: 3px;
+        }
+
+        .diff-line .extra {
+            background: #fde68a;
+            color: #92400e;
+            padding: 0 2px;
+            border-radius: 3px;
+            text-decoration: line-through;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 0.45rem;
+        }
+
+        .search-row input {
+            flex: 1;
+            padding: 0.65rem 0.85rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-row input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-row button {
+            padding: 0.65rem 0.9rem;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .search-result {
+            margin-top: 0.55rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            display: none;
+        }
+
+        .search-result.show {
+            display: block;
+        }
+
+        .search-result mark {
+            background: #fef08a;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Check Mở bài & Kết bài</h1>
+        <p>Advantages / Disadvantages · Kiểm tra chính tả y chang mẫu</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="intro">Mở bài</button>
+        <button class="tab" data-tab="concl">Kết bài</button>
+    </div>
+
+    <!-- INTRO -->
+    <div class="panel active" id="panel-intro">
+        <div class="card">
+            <div class="search-row">
+                <input type="text" id="searchIntro" placeholder="Tìm từ trong mẫu mở bài..." autocomplete="off">
+                <button type="button" onclick="doSearch('intro')">Tìm</button>
+            </div>
+            <div class="search-result" id="searchIntroResult"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <h2>Mẫu mở bài (đáp án chuẩn)</h2>
+                <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('intro')">🔊</button>
+            </div>
+            <div class="model-box" id="modelIntro">In this day and age, the appearance of social problems will directly
+                affect our life and many aspects such as education, entertainment, working, the environment, finance,
+                and health. The topic is that... I will discuss .... in this essay</div>
+            <button type="button" class="toggle-model" id="toggleIntro" onclick="toggleModel('intro')">Ẩn mẫu (để tự
+                nhớ)</button>
+        </div>
+
+        <div class="card">
+            <label class="field-label" for="inputIntro">Bạn gõ lại mở bài tại đây</label>
+            <textarea id="inputIntro" placeholder="Gõ y chang mẫu mở bài..." spellcheck="false"
+                autocapitalize="off"></textarea>
+            <div class="typed-preview" id="previewIntro"></div>
+            <p class="legend"><span class="g">Xanh</span> = đúng · <span class="r">Đỏ</span> = sai · Xám = đang gõ dở
+            </p>
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="checkFull('intro')">Kiểm tra</button>
+                <button type="button" class="btn btn-ghost" onclick="clearInput('intro')">Xóa</button>
+            </div>
+            <p class="hint">Khung nhập không đổi màu. Chữ bên dưới đổi màu realtime. Bảng kết quả chỉ hiện khi bấm Kiểm
+                tra.</p>
+            <div class="result" id="resultIntro"></div>
+        </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="panel" id="panel-concl">
+        <div class="card">
+            <div class="search-row">
+                <input type="text" id="searchConcl" placeholder="Tìm từ trong mẫu kết bài..." autocomplete="off">
+                <button type="button" onclick="doSearch('concl')">Tìm</button>
+            </div>
+            <div class="search-result" id="searchConclResult"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <h2>Mẫu kết bài (đáp án chuẩn)</h2>
+                <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('concl')">🔊</button>
+            </div>
+            <div class="model-box" id="modelConcl">Overall, every single situation will consist of both advantages and
+                disadvantages. From my point of view, we need to develop the pros and minimize the cons of the problem
+            </div>
+            <button type="button" class="toggle-model" id="toggleConcl" onclick="toggleModel('concl')">Ẩn mẫu (để tự
+                nhớ)</button>
+        </div>
+
+        <div class="card">
+            <label class="field-label" for="inputConcl">Bạn gõ lại kết bài tại đây</label>
+            <textarea id="inputConcl" placeholder="Gõ y chang mẫu kết bài..." spellcheck="false"
+                autocapitalize="off"></textarea>
+            <div class="typed-preview" id="previewConcl"></div>
+            <p class="legend"><span class="g">Xanh</span> = đúng · <span class="r">Đỏ</span> = sai · Xám = đang gõ dở
+            </p>
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="checkFull('concl')">Kiểm tra</button>
+                <button type="button" class="btn btn-ghost" onclick="clearInput('concl')">Xóa</button>
+            </div>
+            <p class="hint">Khung nhập không đổi màu. Chữ bên dưới đổi màu realtime. Bảng kết quả chỉ hiện khi bấm Kiểm
+                tra.</p>
+            <div class="result" id="resultConcl"></div>
+        </div>
+    </div>
+
+    <footer>Luyện viết mở bài – kết bài · Advantages & Disadvantages</footer>
+
+    <script>
+        const MODELS = {
+            intro: "In this day and age, the appearance of social problems will directly affect our life and many aspects such as education, entertainment, working, the environment, finance, and health. The topic is that... I will discuss .... in this essay",
+            concl: "Overall, every single situation will consist of both advantages and disadvantages. From my point of view, we need to develop the pros and minimize the cons of the problem"
+        };
+
+        /* Tabs */
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+                document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+                tab.classList.add("active");
+                document.getElementById("panel-" + tab.dataset.tab).classList.add("active");
+            });
+        });
+
+        function toggleModel(key) {
+            const box = document.getElementById(key === "intro" ? "modelIntro" : "modelConcl");
+            const btn = document.getElementById(key === "intro" ? "toggleIntro" : "toggleConcl");
+            const hidden = box.classList.toggle("hidden");
+            btn.textContent = hidden ? "Hiện mẫu" : "Ẩn mẫu (để tự nhớ)";
+        }
+
+        function speakModel(key) {
+            if (!window.speechSynthesis) {
+                alert("Trình duyệt không hỗ trợ đọc.");
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const utter = new SpeechSynthesisUtterance(MODELS[key]);
+            utter.lang = "en-US";
+            utter.rate = 0.88;
+            window.speechSynthesis.speak(utter);
+        }
+
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function normalizeWord(w) {
+            return w.toLowerCase();
+        }
+
+        function getModelWords(key) {
+            return MODELS[key].trim().split(/\s+/);
+        }
+
+        function getUserWords(text) {
+            // Keep trailing incomplete word
+            if (!text) return [];
+            // Split on whitespace but preserve structure
+            return text.trimStart().length === 0 && text.length > 0
+                ? []
+                : text.replace(/^\s+/, "").split(/(\s+)/).reduce((acc, t) => {
+                    if (/^\s+$/.test(t)) return acc;
+                    if (t.length) acc.push(t);
+                    return acc;
+                }, []);
+        }
+
+        /**
+         * Live color: finished words (followed by space or end if matches full) vs model by index
+         * Word currently being typed (no trailing space after it) shown as pending if not complete match
+         */
+        function updatePreview(key) {
+            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
+            const preview = document.getElementById(key === "intro" ? "previewIntro" : "previewConcl");
+            const raw = input.value;
+            const modelWords = getModelWords(key);
+
+            if (!raw.trim()) {
+                preview.innerHTML = "";
+                return;
+            }
+
+            // Split user into words; detect if last word is "in progress" (no trailing space)
+            const endsWithSpace = /\s$/.test(raw);
+            const userWords = raw.trim().split(/\s+/).filter(Boolean);
+
+            let html = "";
+            userWords.forEach((uw, i) => {
+                const mw = modelWords[i];
+                const isLast = i === userWords.length - 1;
+                const stillTyping = isLast && !endsWithSpace;
+
+                if (!mw) {
+                    // extra words beyond model
+                    html += `<span class="w-bad">${escapeHtml(uw)}</span> `;
+                    return;
+                }
+
+                if (stillTyping) {
+                    // partial: if model word starts with what user typed → pending (gray), else bad
+                    if (normalizeWord(mw).startsWith(normalizeWord(uw))) {
+                        html += `<span class="w-pending">${escapeHtml(uw)}</span> `;
+                    } else if (normalizeWord(uw) === normalizeWord(mw)) {
+                        html += `<span class="w-ok">${escapeHtml(uw)}</span> `;
+                    } else {
+                        html += `<span class="w-bad">${escapeHtml(uw)}</span> `;
+                    }
+                } else {
+                    // completed word
+                    if (normalizeWord(uw) === normalizeWord(mw)) {
+                        html += `<span class="w-ok">${escapeHtml(uw)}</span> `;
+                    } else {
+                        html += `<span class="w-bad">${escapeHtml(uw)}</span> `;
+                    }
+                }
+            });
+
+            preview.innerHTML = html.trim();
+        }
+
+        function tokenize(text) {
+            return String(text)
+                .replace(/\u2026/g, "...")
+                .trim()
+                .split(/(\s+)/)
+                .filter(t => t.length > 0);
+        }
+
+        function compareTexts(model, user) {
+            const mWords = tokenize(model).filter(t => !/^\s+$/.test(t));
+            const uWords = tokenize(user).filter(t => !/^\s+$/.test(t));
+            let mi = 0, ui = 0;
+            const parts = [];
+            let correct = 0;
+            const total = mWords.length;
+
+            while (mi < mWords.length || ui < uWords.length) {
+                if (mi >= mWords.length) {
+                    parts.push({ type: "extra", text: uWords[ui] });
+                    ui++;
+                    continue;
+                }
+                if (ui >= uWords.length) {
+                    parts.push({ type: "miss", text: mWords[mi] });
+                    mi++;
+                    continue;
+                }
+                if (normalizeWord(mWords[mi]) === normalizeWord(uWords[ui])) {
+                    parts.push({ type: "ok", text: uWords[ui] });
+                    correct++;
+                    mi++;
+                    ui++;
+                } else {
+                    let foundU = -1, foundM = -1;
+                    for (let k = 1; k <= 3; k++) {
+                        if (ui + k < uWords.length && normalizeWord(mWords[mi]) === normalizeWord(uWords[ui + k])) {
+                            foundU = k; break;
+                        }
+                        if (mi + k < mWords.length && normalizeWord(mWords[mi + k]) === normalizeWord(uWords[ui])) {
+                            foundM = k; break;
+                        }
+                    }
+                    if (foundU > 0) {
+                        for (let k = 0; k < foundU; k++) parts.push({ type: "extra", text: uWords[ui + k] });
+                        ui += foundU;
+                    } else if (foundM > 0) {
+                        for (let k = 0; k < foundM; k++) parts.push({ type: "miss", text: mWords[mi + k] });
+                        mi += foundM;
+                    } else {
+                        parts.push({ type: "miss", text: mWords[mi] });
+                        parts.push({ type: "extra", text: uWords[ui] });
+                        mi++;
+                        ui++;
+                    }
+                }
+            }
+            const pct = total === 0 ? 0 : Math.round((correct / total) * 100);
+            return { parts, correct, total, pct };
+        }
+
+        function renderDiff(parts) {
+            return parts.map(p => {
+                if (p.type === "ok") return `<span class="ok">${escapeHtml(p.text)}</span>`;
+                if (p.type === "miss") return `<span class="miss">${escapeHtml(p.text)}</span>`;
+                return `<span class="extra">${escapeHtml(p.text)}</span>`;
+            }).join(" ");
+        }
+
+        function normalizeFull(s) {
+            return s.toLowerCase().replace(/\s+/g, " ").trim();
+        }
+
+        /** Full result – only when user clicks Kiểm tra */
+        function checkFull(key) {
+            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
+            const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
+            const user = input.value.trim();
+
+            if (!user) {
+                result.className = "result show bad";
+                result.innerHTML = "⚠️ Bạn chưa nhập gì cả.";
+                return;
+            }
+
+            const { parts, correct, total, pct } = compareTexts(MODELS[key], user);
+
+            if (normalizeFull(user) === normalizeFull(MODELS[key])) {
+                result.className = "result show perfect";
+                result.innerHTML = `<div class="score">100% · Hoàn hảo!</div>Chính tả và thứ tự từ khớp mẫu.`;
+                return;
+            }
+
+            if (pct >= 95) result.className = "result show perfect";
+            else if (pct >= 70) result.className = "result show partial";
+            else result.className = "result show bad";
+
+            result.innerHTML = `
+    <div class="score">${pct}% · ${correct}/${total} từ đúng</div>
+    <div><strong>Xanh</strong> = đúng · <span class="miss">Đỏ</span> = thiếu/sai · <span class="extra">Vàng gạch</span> = thừa/sai</div>
+    <div class="diff-line">${renderDiff(parts)}</div>
+    <div class="diff-line" style="margin-top:0.65rem;color:var(--muted)"><strong>Mẫu chuẩn:</strong> ${escapeHtml(MODELS[key])}</div>
+  `;
+        }
+
+        function clearInput(key) {
+            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
+            const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
+            const preview = document.getElementById(key === "intro" ? "previewIntro" : "previewConcl");
+            input.value = "";
+            preview.innerHTML = "";
+            result.classList.remove("show");
+            result.innerHTML = "";
+        }
+
+        /* Live word coloring only – no result panel */
+        ["intro", "concl"].forEach(key => {
+            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
+            input.addEventListener("input", () => {
+                updatePreview(key);
+                // hide previous full result when user continues typing
+                const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
+                result.classList.remove("show");
+                result.innerHTML = "";
+            });
+        });
+
+        /* Search */
+        function doSearch(key) {
+            const inputId = key === "intro" ? "searchIntro" : "searchConcl";
+            const resultId = key === "intro" ? "searchIntroResult" : "searchConclResult";
+            const q = document.getElementById(inputId).value.trim();
+            const box = document.getElementById(resultId);
+            if (!q) {
+                box.classList.remove("show");
+                box.innerHTML = "";
+                return;
+            }
+            const model = MODELS[key];
+            const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+            if (!re.test(model)) {
+                box.className = "search-result show";
+                box.innerHTML = `Không thấy “${escapeHtml(q)}” trong mẫu.`;
+                return;
+            }
+            const highlighted = model.replace(re, m => `<mark>${m}</mark>`);
+            box.className = "search-result show";
+            box.innerHTML = highlighted;
+        }
+
+        document.getElementById("searchIntro").addEventListener("keydown", e => {
+            if (e.key === "Enter") doSearch("intro");
+        });
+        document.getElementById("searchConcl").addEventListener("keydown", e => {
+            if (e.key === "Enter") doSearch("concl");
+        });
+    </script>
+</body>
+
+</html>
