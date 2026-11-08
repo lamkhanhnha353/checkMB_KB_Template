@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Luyện Mở bài & Kết bài – Essay & Lá thư</title>
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --bg: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 1.75rem 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.92;
+            margin-top: 0.3rem;
+        }
+
+        .wrap {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 1.25rem 1rem 2rem;
+        }
+
+        .card-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.15rem 1.2rem;
+            margin-bottom: 0.85rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.12s, box-shadow 0.12s;
+        }
+
+        .card-link:active {
+            transform: scale(0.98);
+        }
+
+        .card-link .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-link.essay .icon {
+            background: #dbeafe;
+        }
+
+        .card-link.letter .icon {
+            background: #ccfbf1;
+        }
+
+        .card-link .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-link .info strong {
+            display: block;
+            font-size: 1.08rem;
+            margin-bottom: 0.2rem;
+            color: #0f172a;
+        }
+
+        .card-link .info span {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .card-link .arrow {
+            color: var(--muted);
+            font-size: 1.35rem;
+            font-weight: 300;
+        }
+
+        .note {
+            margin-top: 1.25rem;
+            padding: 0.85rem 1rem;
+            background: #eff6ff;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            color: #1e40af;
+            line-height: 1.45;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Luyện Mở bài & Kết bài</h1>
+        <p>Chọn dạng bài bạn muốn ôn</p>
+    </header>
+
+    <div class="wrap">
+        <a class="card-link essay" href="essay-intro-conclusion-check.html">
+            <div class="icon">📝</div>
+            <div class="info">
+                <strong>Essay (Advantages / Disadvantages)</strong>
+                <span>Mở bài & Kết bài · kiểm tra chính tả</span>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <a class="card-link letter" href="letter-intro-conclusion-check.html">
+            <div class="icon">✉️</div>
+            <div class="info">
+                <strong>Lá thư (Letter)</strong>
+                <span>Mở thân mật · Mở trang trọng · Kết bài</span>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+
+        <div class="note">
+            Gõ lại mẫu → chữ đổi màu realtime → bấm <strong>Kiểm tra</strong> để xem điểm. Có loa đọc và nghĩa tiếng
+            Việt.
+        </div>
+    </div>
+
+    <footer>VSTEP B1 · Luyện viết mở – kết</footer>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Check Mở bài & Kết bài – Advantages / Disadvantages</title>
+    <title>Check Mở bài & Kết bài – Lá thư (Letter)</title>
     <style>
         :root {
             --primary: #1d4ed8;
@@ -35,47 +35,62 @@
         }
 
         header {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            background: linear-gradient(135deg, #c2410c, #ea580c);
             color: white;
-            padding: 1.4rem 1.1rem 1.2rem;
+            padding: 1.25rem 1.1rem 1.1rem;
             text-align: center;
         }
 
         header h1 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
         header p {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             opacity: 0.92;
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
+        }
+
+        .nav-back {
+            display: inline-block;
+            margin-top: 0.65rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            opacity: 0.95;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
         }
 
         .tabs {
             display: flex;
-            gap: 0.5rem;
-            padding: 0.85rem 1rem 0;
+            gap: 0.4rem;
+            padding: 0.85rem 0.75rem 0;
             max-width: 640px;
             margin: 0 auto;
+            flex-wrap: wrap;
         }
 
         .tab {
             flex: 1;
-            padding: 0.7rem;
+            min-width: 90px;
+            padding: 0.6rem 0.4rem;
             border: 2px solid var(--border);
             background: white;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.82rem;
             cursor: pointer;
             font-family: inherit;
             color: var(--text);
         }
 
         .tab.active {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: #ea580c;
+            border-color: #ea580c;
             color: white;
         }
 
@@ -108,7 +123,7 @@
 
         .card-title h2 {
             font-size: 0.95rem;
-            color: var(--primary);
+            color: #c2410c;
         }
 
         .speak-btn {
@@ -116,8 +131,8 @@
             height: 38px;
             border-radius: 50%;
             border: none;
-            background: #dbeafe;
-            color: var(--primary);
+            background: #ffedd5;
+            color: #c2410c;
             font-size: 1.1rem;
             cursor: pointer;
             flex-shrink: 0;
@@ -131,6 +146,8 @@
             font-size: 0.98rem;
             line-height: 1.55;
             color: #1e293b;
+            white-space: normal;
+            text-align: left;
         }
 
         .model-box.hidden {
@@ -142,12 +159,12 @@
         .model-vi {
             margin-top: 0.65rem;
             padding: 0.7rem 0.9rem;
-            background: #eff6ff;
-            border-left: 3px solid var(--primary);
+            background: #fff7ed;
+            border-left: 3px solid #ea580c;
             border-radius: 0 8px 8px 0;
             font-size: 0.9rem;
             line-height: 1.5;
-            color: #1e40af;
+            color: #c2410c;
         }
 
         .model-vi strong {
@@ -161,7 +178,7 @@
         .toggle-model {
             margin-top: 0.55rem;
             font-size: 0.82rem;
-            color: var(--primary);
+            color: #c2410c;
             background: none;
             border: none;
             cursor: pointer;
@@ -177,7 +194,6 @@
             margin-bottom: 0.4rem;
         }
 
-        /* Input: khung cố định, không đổi màu */
         textarea {
             width: 100%;
             min-height: 140px;
@@ -194,10 +210,9 @@
         }
 
         textarea:focus {
-            border-color: var(--primary);
+            border-color: #ea580c;
         }
 
-        /* Live colored text preview */
         .typed-preview {
             margin-top: 0.65rem;
             padding: 0.75rem 1rem;
@@ -264,12 +279,12 @@
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: #ea580c;
             color: white;
         }
 
         .btn-primary:active {
-            background: #1e40af;
+            background: #c2410c;
         }
 
         .btn-ghost {
@@ -362,14 +377,14 @@
         }
 
         .search-row input:focus {
-            border-color: var(--primary);
+            border-color: #ea580c;
         }
 
         .search-row button {
             padding: 0.65rem 0.9rem;
             border: none;
             border-radius: 10px;
-            background: var(--primary);
+            background: #ea580c;
             color: white;
             font-weight: 700;
             cursor: pointer;
@@ -388,7 +403,7 @@
         }
 
         .search-result mark {
-            background: #fef08a;
+            background: #ffedd5;
             padding: 0 2px;
             border-radius: 2px;
         }
@@ -399,62 +414,103 @@
             font-size: 0.8rem;
             color: var(--muted);
         }
+
+        footer a {
+            color: #c2410c;
+            font-weight: 600;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Check Mở bài & Kết bài</h1>
-        <p>Advantages / Disadvantages · Kiểm tra chính tả y chang mẫu</p>
+        <h1>Check Mở bài & Kết bài – Lá thư</h1>
+        <p>Letter · Thân mật / Trang trọng · Kiểm tra chính tả</p>
+        <a class="nav-back" href="index-mo-ket-bai.html">← Về trang chủ</a>
     </header>
 
     <div class="tabs">
-        <button class="tab active" data-tab="intro">Mở bài</button>
+        <button class="tab active" data-tab="informal">Mở thân mật</button>
+        <button class="tab" data-tab="formal">Mở trang trọng</button>
         <button class="tab" data-tab="concl">Kết bài</button>
     </div>
 
-    <!-- INTRO -->
-    <div class="panel active" id="panel-intro">
+    <!-- INFORMAL OPENING -->
+    <div class="panel active" id="panel-informal">
         <div class="card">
             <div class="search-row">
-                <input type="text" id="searchIntro" placeholder="Tìm từ trong mẫu mở bài..." autocomplete="off">
-                <button type="button" onclick="doSearch('intro')">Tìm</button>
+                <input type="text" id="searchInformal" placeholder="Tìm từ trong mẫu..." autocomplete="off">
+                <button type="button" onclick="doSearch('informal')">Tìm</button>
             </div>
-            <div class="search-result" id="searchIntroResult"></div>
+            <div class="search-result" id="searchInformalResult"></div>
         </div>
-
         <div class="card">
             <div class="card-title">
-                <h2>Mẫu mở bài (đáp án chuẩn)</h2>
-                <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('intro')">🔊</button>
+                <h2>Mở bài thân mật (đáp án chuẩn)</h2>
+                <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('informal')">🔊</button>
             </div>
-            <div class="model-box" id="modelIntro">In this day and age, the appearance of social problems will directly
-                affect our life and many aspects such as education, entertainment, working, the environment, finance,
-                and health. The topic is that... I will discuss .... in this essay</div>
-            <div class="model-vi" id="viIntro">
+            <div class="model-box" id="modelInformal">Dear Lan,<br>How is everything going? I am writing in connection
+                with you to discuss the mentioned situation.</div>
+            <div class="model-vi" id="viInformal">
                 <strong>Nghĩa tiếng Việt</strong>
-                Trong thời đại ngày nay, sự xuất hiện của các vấn đề xã hội gây ảnh hưởng trực tiếp đến cuộc sống của
-                chúng ta cũng như nhiều khía cạnh khác như giáo dục, giải trí, công việc, môi trường, tài chính và sức
-                khỏe. Chủ đề được đề cập ở đây là... và tôi sẽ thảo luận về... trong bài viết này
+                Mọi thứ đang diễn ra như thế nào? Tôi đang viết thư liên quan đến bạn để thảo luận về tình huống đã được
+                đề cập.
             </div>
-            <button type="button" class="toggle-model" id="toggleIntro" onclick="toggleModel('intro')">Ẩn mẫu (để tự
-                nhớ)</button>
+            <button type="button" class="toggle-model" id="toggleInformal" onclick="toggleModel('informal')">Ẩn mẫu (để
+                tự nhớ)</button>
         </div>
-
         <div class="card">
-            <label class="field-label" for="inputIntro">Bạn gõ lại mở bài tại đây</label>
-            <textarea id="inputIntro" placeholder="Gõ y chang mẫu mở bài..." spellcheck="false"
+            <label class="field-label" for="inputInformal">Bạn gõ lại mở bài thân mật tại đây</label>
+            <textarea id="inputInformal" placeholder="Gõ y chang mẫu..." spellcheck="false"
                 autocapitalize="off"></textarea>
-            <div class="typed-preview" id="previewIntro"></div>
+            <div class="typed-preview" id="previewInformal"></div>
             <p class="legend"><span class="g">Xanh</span> = đúng · <span class="r">Đỏ</span> = sai · Xám = đang gõ dở
             </p>
             <div class="btn-row">
-                <button type="button" class="btn btn-primary" onclick="checkFull('intro')">Kiểm tra</button>
-                <button type="button" class="btn btn-ghost" onclick="clearInput('intro')">Xóa</button>
+                <button type="button" class="btn btn-primary" onclick="checkFull('informal')">Kiểm tra</button>
+                <button type="button" class="btn btn-ghost" onclick="clearInput('informal')">Xóa</button>
             </div>
-            <p class="hint">Khung nhập không đổi màu. Chữ bên dưới đổi màu realtime. Bảng kết quả chỉ hiện khi bấm Kiểm
-                tra.</p>
-            <div class="result" id="resultIntro"></div>
+            <p class="hint">Khung không đổi màu. Chữ dưới đổi màu khi gõ. Kết quả chỉ hiện khi bấm Kiểm tra.</p>
+            <div class="result" id="resultInformal"></div>
+        </div>
+    </div>
+
+    <!-- FORMAL OPENING -->
+    <div class="panel" id="panel-formal">
+        <div class="card">
+            <div class="search-row">
+                <input type="text" id="searchFormal" placeholder="Tìm từ trong mẫu..." autocomplete="off">
+                <button type="button" onclick="doSearch('formal')">Tìm</button>
+            </div>
+            <div class="search-result" id="searchFormalResult"></div>
+        </div>
+        <div class="card">
+            <div class="card-title">
+                <h2>Mở bài trang trọng (đáp án chuẩn)</h2>
+                <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('formal')">🔊</button>
+            </div>
+            <div class="model-box" id="modelFormal">Dear Sir/Madam,<br>I am sincerely writing in connection with you to
+                discuss the mentioned situation.</div>
+            <div class="model-vi" id="viFormal">
+                <strong>Nghĩa tiếng Việt</strong>
+                Tôi đang thành thật viết thư có liên quan với bạn (ông/bà) để thảo luận về tình hình đã được đề cập.
+            </div>
+            <button type="button" class="toggle-model" id="toggleFormal" onclick="toggleModel('formal')">Ẩn mẫu (để tự
+                nhớ)</button>
+        </div>
+        <div class="card">
+            <label class="field-label" for="inputFormal">Bạn gõ lại mở bài trang trọng tại đây</label>
+            <textarea id="inputFormal" placeholder="Gõ y chang mẫu..." spellcheck="false"
+                autocapitalize="off"></textarea>
+            <div class="typed-preview" id="previewFormal"></div>
+            <p class="legend"><span class="g">Xanh</span> = đúng · <span class="r">Đỏ</span> = sai · Xám = đang gõ dở
+            </p>
+            <div class="btn-row">
+                <button type="button" class="btn btn-primary" onclick="checkFull('formal')">Kiểm tra</button>
+                <button type="button" class="btn btn-ghost" onclick="clearInput('formal')">Xóa</button>
+            </div>
+            <p class="hint">Khung không đổi màu. Chữ dưới đổi màu khi gõ. Kết quả chỉ hiện khi bấm Kiểm tra.</p>
+            <div class="result" id="resultFormal"></div>
         </div>
     </div>
 
@@ -462,29 +518,31 @@
     <div class="panel" id="panel-concl">
         <div class="card">
             <div class="search-row">
-                <input type="text" id="searchConcl" placeholder="Tìm từ trong mẫu kết bài..." autocomplete="off">
+                <input type="text" id="searchConcl" placeholder="Tìm từ trong mẫu..." autocomplete="off">
                 <button type="button" onclick="doSearch('concl')">Tìm</button>
             </div>
             <div class="search-result" id="searchConclResult"></div>
         </div>
-
         <div class="card">
             <div class="card-title">
-                <h2>Mẫu kết bài (đáp án chuẩn)</h2>
+                <h2>Kết bài lá thư (đáp án chuẩn)</h2>
                 <button type="button" class="speak-btn" title="Đọc mẫu" onclick="speakModel('concl')">🔊</button>
             </div>
-            <div class="model-box" id="modelConcl">Overall, every single situation will consist of both advantages and
-                disadvantages. From my point of view, we need to develop the pros and minimize the cons of the problem
-            </div>
+            <div class="model-box" id="modelConcl">I hope my letter will help you understand the situation. If you need
+                any further information or assistance, please do not hesitate to contact me. I look forward to hearing
+                from you soon.<br><br>Best wishes,<br><br>Yours sincerely,</div>
             <div class="model-vi" id="viConcl">
                 <strong>Nghĩa tiếng Việt</strong>
-                Nhìn chung, mọi tình huống đều có cả ưu điểm và nhược điểm. Theo quan điểm của tôi, chúng ta cần phát
-                huy những mặt tích cực và giảm thiểu những mặt tiêu cực của vấn đề
+                Tôi hy vọng lá thư của tôi sẽ giúp bạn hiểu tình huống. Nếu bạn cần bất kỳ thông tin hoặc sự hỗ trợ, xin
+                đừng ngần ngại liên hệ với tôi. Tôi mong chờ nhận được phản hồi sớm từ bạn.
+                <br><br>
+                Rất thân mật (Best wishes),
+                <br>
+                Trang trọng (Yours sincerely),
             </div>
             <button type="button" class="toggle-model" id="toggleConcl" onclick="toggleModel('concl')">Ẩn mẫu (để tự
                 nhớ)</button>
         </div>
-
         <div class="card">
             <label class="field-label" for="inputConcl">Bạn gõ lại kết bài tại đây</label>
             <textarea id="inputConcl" placeholder="Gõ y chang mẫu kết bài..." spellcheck="false"
@@ -496,21 +554,27 @@
                 <button type="button" class="btn btn-primary" onclick="checkFull('concl')">Kiểm tra</button>
                 <button type="button" class="btn btn-ghost" onclick="clearInput('concl')">Xóa</button>
             </div>
-            <p class="hint">Khung nhập không đổi màu. Chữ bên dưới đổi màu realtime. Bảng kết quả chỉ hiện khi bấm Kiểm
-                tra.</p>
+            <p class="hint">Khung không đổi màu. Chữ dưới đổi màu khi gõ. Kết quả chỉ hiện khi bấm Kiểm tra.</p>
             <div class="result" id="resultConcl"></div>
         </div>
     </div>
 
-    <footer>Luyện viết mở bài – kết bài · Advantages & Disadvantages</footer>
+    <footer>
+        <a href="index-mo-ket-bai.html">← Trang chủ</a>
+        ·
+        <a href="essay-intro-conclusion-check.html">Essay Advantages/Disadvantages</a>
+    </footer>
 
     <script>
         const MODELS = {
-            intro: "In this day and age, the appearance of social problems will directly affect our life and many aspects such as education, entertainment, working, the environment, finance, and health. The topic is that... I will discuss .... in this essay",
-            concl: "Overall, every single situation will consist of both advantages and disadvantages. From my point of view, we need to develop the pros and minimize the cons of the problem"
+            informal: "Dear Lan,\nHow is everything going? I am writing in connection with you to discuss the mentioned situation.",
+            formal: "Dear Sir/Madam,\nI am sincerely writing in connection with you to discuss the mentioned situation.",
+            concl: "I hope my letter will help you understand the situation. If you need any further information or assistance, please do not hesitate to contact me. I look forward to hearing from you soon.\n\nBest wishes,\n\nYours sincerely,"
         };
 
-        /* Tabs */
+        const KEYS = ["informal", "formal", "concl"];
+        const CAP = { informal: "Informal", formal: "Formal", concl: "Concl" };
+
         document.querySelectorAll(".tab").forEach(tab => {
             tab.addEventListener("click", () => {
                 document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
@@ -520,10 +584,15 @@
             });
         });
 
+        function id(key, prefix) {
+            // informal -> Informal for camelCase element ids used in HTML
+            return prefix + CAP[key];
+        }
+
         function toggleModel(key) {
-            const box = document.getElementById(key === "intro" ? "modelIntro" : "modelConcl");
-            const vi = document.getElementById(key === "intro" ? "viIntro" : "viConcl");
-            const btn = document.getElementById(key === "intro" ? "toggleIntro" : "toggleConcl");
+            const box = document.getElementById("model" + CAP[key]);
+            const vi = document.getElementById("vi" + CAP[key]);
+            const btn = document.getElementById("toggle" + CAP[key]);
             const hidden = box.classList.toggle("hidden");
             if (vi) vi.style.display = hidden ? "none" : "block";
             btn.textContent = hidden ? "Hiện mẫu" : "Ẩn mẫu (để tự nhớ)";
@@ -535,7 +604,7 @@
                 return;
             }
             window.speechSynthesis.cancel();
-            const utter = new SpeechSynthesisUtterance(MODELS[key]);
+            const utter = new SpeechSynthesisUtterance(MODELS[key].replace(/\n/g, " "));
             utter.lang = "en-US";
             utter.rate = 0.88;
             window.speechSynthesis.speak(utter);
@@ -557,26 +626,9 @@
             return MODELS[key].trim().split(/\s+/);
         }
 
-        function getUserWords(text) {
-            // Keep trailing incomplete word
-            if (!text) return [];
-            // Split on whitespace but preserve structure
-            return text.trimStart().length === 0 && text.length > 0
-                ? []
-                : text.replace(/^\s+/, "").split(/(\s+)/).reduce((acc, t) => {
-                    if (/^\s+$/.test(t)) return acc;
-                    if (t.length) acc.push(t);
-                    return acc;
-                }, []);
-        }
-
-        /**
-         * Live color: finished words (followed by space or end if matches full) vs model by index
-         * Word currently being typed (no trailing space after it) shown as pending if not complete match
-         */
         function updatePreview(key) {
-            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
-            const preview = document.getElementById(key === "intro" ? "previewIntro" : "previewConcl");
+            const input = document.getElementById("input" + CAP[key]);
+            const preview = document.getElementById("preview" + CAP[key]);
             const raw = input.value;
             const modelWords = getModelWords(key);
 
@@ -585,7 +637,6 @@
                 return;
             }
 
-            // Split user into words; detect if last word is "in progress" (no trailing space)
             const endsWithSpace = /\s$/.test(raw);
             const userWords = raw.trim().split(/\s+/).filter(Boolean);
 
@@ -596,13 +647,10 @@
                 const stillTyping = isLast && !endsWithSpace;
 
                 if (!mw) {
-                    // extra words beyond model
                     html += `<span class="w-bad">${escapeHtml(uw)}</span> `;
                     return;
                 }
-
                 if (stillTyping) {
-                    // partial: if model word starts with what user typed → pending (gray), else bad
                     if (normalizeWord(mw).startsWith(normalizeWord(uw))) {
                         html += `<span class="w-pending">${escapeHtml(uw)}</span> `;
                     } else if (normalizeWord(uw) === normalizeWord(mw)) {
@@ -611,7 +659,6 @@
                         html += `<span class="w-bad">${escapeHtml(uw)}</span> `;
                     }
                 } else {
-                    // completed word
                     if (normalizeWord(uw) === normalizeWord(mw)) {
                         html += `<span class="w-ok">${escapeHtml(uw)}</span> `;
                     } else {
@@ -619,7 +666,6 @@
                     }
                 }
             });
-
             preview.innerHTML = html.trim();
         }
 
@@ -695,10 +741,9 @@
             return s.toLowerCase().replace(/\s+/g, " ").trim();
         }
 
-        /** Full result – only when user clicks Kiểm tra */
         function checkFull(key) {
-            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
-            const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
+            const input = document.getElementById("input" + CAP[key]);
+            const result = document.getElementById("result" + CAP[key]);
             const user = input.value.trim();
 
             if (!user) {
@@ -728,33 +773,29 @@
         }
 
         function clearInput(key) {
-            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
-            const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
-            const preview = document.getElementById(key === "intro" ? "previewIntro" : "previewConcl");
+            const input = document.getElementById("input" + CAP[key]);
+            const result = document.getElementById("result" + CAP[key]);
+            const preview = document.getElementById("preview" + CAP[key]);
             input.value = "";
             preview.innerHTML = "";
             result.classList.remove("show");
             result.innerHTML = "";
         }
 
-        /* Live word coloring only – no result panel */
-        ["intro", "concl"].forEach(key => {
-            const input = document.getElementById(key === "intro" ? "inputIntro" : "inputConcl");
+        KEYS.forEach(key => {
+            const input = document.getElementById("input" + CAP[key]);
             input.addEventListener("input", () => {
                 updatePreview(key);
-                // hide previous full result when user continues typing
-                const result = document.getElementById(key === "intro" ? "resultIntro" : "resultConcl");
+                const result = document.getElementById("result" + CAP[key]);
                 result.classList.remove("show");
                 result.innerHTML = "";
             });
         });
 
-        /* Search */
         function doSearch(key) {
-            const inputId = key === "intro" ? "searchIntro" : "searchConcl";
-            const resultId = key === "intro" ? "searchIntroResult" : "searchConclResult";
-            const q = document.getElementById(inputId).value.trim();
-            const box = document.getElementById(resultId);
+            const inputEl = document.getElementById("search" + CAP[key]);
+            const box = document.getElementById("search" + CAP[key] + "Result");
+            const q = inputEl.value.trim();
             if (!q) {
                 box.classList.remove("show");
                 box.innerHTML = "";
@@ -772,11 +813,10 @@
             box.innerHTML = highlighted;
         }
 
-        document.getElementById("searchIntro").addEventListener("keydown", e => {
-            if (e.key === "Enter") doSearch("intro");
-        });
-        document.getElementById("searchConcl").addEventListener("keydown", e => {
-            if (e.key === "Enter") doSearch("concl");
+        KEYS.forEach(key => {
+            document.getElementById("search" + CAP[key]).addEventListener("keydown", e => {
+                if (e.key === "Enter") doSearch(key);
+            });
         });
     </script>
 </body>
